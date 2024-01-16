@@ -1,0 +1,40 @@
+<main>
+  <div class="details-container">
+    <div class="details-container-image">
+      <img src="{{book.image}}" />
+    </div>
+    <div class="details-container-info">
+      <h2>Title: {{book.title}}</h2>
+      <h3>Type: {{book.type}}</h3>
+      <h3>Certificate: {{book.certificate}}</h3>
+      <h3>Price: €{{book.price}}</h3>
+      <h3>By: {{owner}}</h3>
+      <!--If there are sign up users-->
+      {{#if signedPeople}}
+        <h4>Signed By: {{joined}}</h4>
+      {{else}}
+        <!--If there are no sign up users-->
+        <h4>Nobody has signed in for this course yet</h4>
+      {{/if}}
+    </div>
+    <div class="details-container-content">
+      <p>{{book.description}}</p>
+    </div>
+    <div class="btn-container">
+      <!-- Only for registered user and creator of the course-->
+      {{#if isOwner}}
+        <a href="/catalog/edit/{{book._id}}">Edit</a>
+        <a href="/catalog/delete/{{book._id}}">Delete</a>
+      {{/if}}
+      {{#if isLogged}}
+        <!-- logged in user who has not yet sign up for the course-->
+        {{#if isSigned}}
+          <p class="sign-up">You've already signed up for this course!</p>
+        {{else}}
+          <a href="/catalog/signUp/{{book._id}}">Sign up</a>
+        {{/if}}
+      {{/if}}
+
+    </div>
+  </div>
+</main>
